@@ -1,0 +1,85 @@
+INICIO
+
+    // Requerimientos generales del sistema
+    // -----------------------------------
+    // Lista para almacenar los cursos
+    DEFINIR lista_cursos COMO LISTA DE ESTRUCTURA Curso
+    // La estructura Curso podría contener: nombre, nota, estado_aprobacion
+    
+    DEFINIR opcion COMO entero
+    DEFINIR continuar_menu COMO booleano = VERDADERO
+
+    MIENTRAS continuar_menu ES VERDADERO HACER
+
+        IMPRIMIR "====== GESTOR DE NOTAS ACADÉMICAS ======"
+        IMPRIMIR "1.  Registrar nuevo curso"
+        IMPRIMIR "2.  Mostrar todos los cursos y notas"
+        IMPRIMIR "3.  Calcular promedio general"
+        IMPRIMIR "4.  Contar cursos aprobados y reprobados"
+        IMPRIMIR "5.  Buscar curso por nombre (búsqueda lineal)"
+        IMPRIMIR "6.  Actualizar nota de un curso"
+        IMPRIMIR "7.  Eliminar un curso"
+        IMPRIMIR "8.  Ordenar cursos por nota (ordenamiento burbuja)"
+        IMPRIMIR "9.  Ordenar cursos por nombre (ordenamiento inserción)"
+        IMPRIMIR "10. Buscar curso por nombre (búsqueda binaria)"
+        IMPRIMIR "11. Simular cola de solicitudes de revisión"
+        IMPRIMIR "12. Mostrar historial de cambios (pila)"
+        IMPRIMIR "13. Salir"
+        IMPRIMIR ""
+        IMPRIMIR "Seleccione una opción:"
+        
+        LEER opcion
+
+        // La validación de la opción debería ir aquí
+        SI opcion >= 1 Y opcion <= 13 ENTONCES
+
+            // Condicionales para cada opción
+            SI opcion ES 1 ENTONCES
+                // Marcador de posición para la lógica de registro
+                <accion: REGISTRAR_CURSO(lista_cursos)>
+            SINO SI opcion ES 2 ENTONCES
+                // Marcador de posición para la lógica de mostrar cursos
+                <accion: MOSTRAR_CURSOS(lista_cursos)>
+            SINO SI opcion ES 3 ENTONCES
+                // Marcador de posición para la lógica de calcular promedio
+                <accion: CALCULAR_PROMEDIO(lista_cursos)>
+            SINO SI opcion ES 4 ENTONCES
+                // Marcador de posición para la lógica de contar aprobados/reprobados
+                <accion: CONTAR_CURSOS(lista_cursos)>
+            SINO SI opcion ES 5 ENTONCES
+                // Marcador de posición para la lógica de búsqueda lineal
+                <accion: BUSQUEDA_LINEAL(lista_cursos)>
+            SINO SI opcion ES 6 ENTONCES
+                // Marcador de posición para la lógica de actualización
+                <accion: ACTUALIZAR_CURSO(lista_cursos)>
+            SINO SI opcion ES 7 ENTONCES
+                // Marcador de posición para la lógica de eliminación
+                <accion: ELIMINAR_CURSO(lista_cursos)>
+            SINO SI opcion ES 8 ENTONCES
+                // Marcador de posición para el ordenamiento de burbuja
+                <accion: ORDENAMIENTO_BURBUJA(lista_cursos)>
+            SINO SI opcion ES 9 ENTONCES
+                // Marcador de posición para el ordenamiento por inserción
+                <accion: ORDENAMIENTO_INSERCION(lista_cursos)>
+            SINO SI opcion ES 10 ENTONCES
+                // Marcador de posición para la búsqueda binaria
+                <accion: BUSQUEDA_BINARIA(lista_cursos)>
+            SINO SI opcion ES 11 ENTONCES
+                // Marcador de posición para la cola de solicitudes
+                <accion: SIMULAR_COLA()>
+            SINO SI opcion ES 12 ENTONCES
+                // Marcador de posición para la pila de historial
+                <accion: MOSTRAR_PILA()>
+            SINO SI opcion ES 13 ENTONCES
+                IMPRIMIR "Saliendo del programa..."
+                continuar_menu = FALSO
+            FIN SI
+        SINO
+            IMPRIMIR "Opción no válida. Por favor, seleccione un número del 1 al 13."
+        FIN SI
+
+        IMPRIMIR "" // Salto de línea para mejor visibilidad
+        
+    FIN_MIENTRAS
+
+FIN
