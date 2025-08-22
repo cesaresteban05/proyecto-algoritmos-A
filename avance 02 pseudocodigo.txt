@@ -1,0 +1,63 @@
+     // Descripción:
+    // Permite al usuario registrar una serie de notas,
+   // calcular su promedio y mostrar el resultado.
+  // Incluye validación básica para asegurar que las notas sean numéricas
+ // y no vacías.
+   
+INICIO
+
+    // Declaración de variables
+    DEFINIR lista_notas COMO LISTA DE REALES // Lista para almacenar las notas
+    DEFINIR nota_ingresada COMO REAL // Variable para la nota del usuario
+    DEFINIR seguir_ingresando COMO booleano = VERDADERO
+
+    // Bucle principal para solicitar notas
+    MIENTRAS seguir_ingresando ES VERDADERO HACER
+    
+        // Impresión de instrucciones para el usuario
+        IMPRIMIR "Ingrese una nota (o ingrese un valor no numérico para finalizar):"
+        
+        // --- Validación básica de la nota ---
+        // Se utiliza un bloque TIPO-TRY-CATCH para manejar errores de entrada.
+        INTENTAR
+            LEER nota_ingresada
+            // El usuario ingresó un valor numérico, lo agregamos a la lista
+            AGREGAR nota_ingresada A lista_notas
+        EXCEPTO
+            // Si la lectura falla, el usuario ingresó algo que no es un número.
+            // Esto sirve como la condición para salir del bucle.
+            seguir_ingresando = FALSO
+        FIN_INTENTAR
+        
+    FIN_MIENTRAS
+
+     ----------------------------------------------------------------------
+    // Cálculo del promedio
+     ----------------------------------------------------------------------
+
+    // Condicional para verificar si se ingresaron notas
+    SI TAMAÑO(lista_notas) > 0 ENTONCES
+    
+        // Variables para el cálculo
+        DEFINIR suma_notas COMO REAL = 0
+        DEFINIR promedio_notas COMO REAL
+        
+        // Bucle para sumar todas las notas en la lista
+        PARA CADA nota EN lista_notas HACER
+            suma_notas = suma_notas + nota
+        FIN_PARA
+        
+        // Cálculo del promedio
+        promedio_notas = suma_notas / TAMAÑO(lista_notas)
+        
+        // Impresión del resultado
+        IMPRIMIR "El promedio de las notas es:", promedio_notas
+        
+    SINO
+    
+        // Mensaje si no se ingresaron notas
+        IMPRIMIR "No se ingresaron notas para calcular el promedio."
+    
+    FIN_SI
+
+FIN
