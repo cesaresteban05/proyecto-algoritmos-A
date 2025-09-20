@@ -83,8 +83,8 @@ def calcular_promedio():
 
 # Contadores
 def contar_cursos_estado():
-   # Implementa la funcionalidad para el menú 4.
-   # Cuenta y muestra los cursos aprobados y reprobados (>= 60).
+    # Implementa la funcionalidad para el menú 4.
+    # Cuenta y muestra los cursos aprobados y reprobados (>= 60).
 
     print("\n[Funcionalidad: Contar cursos aprobados y reprobados]")
     
@@ -133,7 +133,7 @@ def buscar_curso_lineal():
 ## Actualización de Datos
 def actualizar_nota():
     # Implementa la funcionalidad para el menú 6.
-    # Permite actualizar la nota de un curso existente.
+    # Permite actualizar la nota de un curso existente y guarda el cambio en el historial.
     
     print("\n[Funcionalidad: Actualizar nota de un curso]")
     
@@ -155,8 +155,11 @@ def actualizar_nota():
             nueva_nota = int(input("Ingrese la nueva nota (0-100): "))
             # Validación con condicional
             if 0 <= nueva_nota <= 100:
+                nota_anterior = curso_encontrado['nota']
                 curso_encontrado['nota'] = nueva_nota # Actualización del dato
                 print(f"\n¡La nota de '{curso_encontrado['nombre']}' ha sido actualizada a {nueva_nota}!")
+                # Guarda el cambio en la pila del historial
+                historial_cambios.append(f"Nota de '{curso_encontrado['nombre']}' actualizada de {nota_anterior} a {nueva_nota}")
             else:
                 print("Error: La nota debe estar entre 0 y 100.")
         except ValueError:
@@ -166,7 +169,7 @@ def actualizar_nota():
 
 def eliminar_curso():
     # Implementa la funcionalidad para el menú 7.
-    # Elimina un curso de la lista.
+    # Elimina un curso de la lista y guarda el cambio en el historial.
     
     print("\n[Funcionalidad: Eliminar un curso]")
     if not cursos:
@@ -184,6 +187,8 @@ def eliminar_curso():
     if curso_encontrado:
         cursos.remove(curso_encontrado)
         print(f"\nEl curso '{nombre_eliminar}' ha sido eliminado.")
+        # Guarda el cambio en la pila del historial
+        historial_cambios.append(f"Curso '{nombre_eliminar}' eliminado")
     else:
         print(f"\nEl curso '{nombre_eliminar}' no fue encontrado.")
 
@@ -274,7 +279,7 @@ def simular_cola_revision():
         print("\nProcesando solicitudes...")
         while solicitudes_revision:
             solicitud_actual = solicitudes_revision.pop(0) # Retira el primer elemento
-            print(f"  > Procesando solicitud de: {solicitud_actual}")
+            print(f"   > Procesando solicitud de: {solicitud_actual}")
         print("Todas las solicitudes han sido procesadas.")
     else:
         print("No hay solicitudes para procesar.")
@@ -291,7 +296,7 @@ def mostrar_historial_pila():
     print("Últimos cambios (del más reciente al más antiguo):")
     # Recorremos la pila sin modificarla
     for i in range(len(historial_cambios) - 1, -1, -1):
-        print(f"  > {historial_cambios[i]}")
+        print(f"   > {historial_cambios[i]}")
 
 # ==============================================================================
 # BUCLE PRINCIPAL DEL PROGRAMA
